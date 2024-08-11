@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import "../fontawesome";
+import Head from "next/head";
+import "../fontawesome"; // This is important to include FontAwesome icons
 import "./globals.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';

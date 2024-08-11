@@ -1,8 +1,12 @@
 import Link from 'next/link';
+import Head from 'next/head';
 import Image from 'next/image';
-import Head from "next/head";
-import "../app/globals.css"
-import Header from '../app/components/header';
+import "../fontawesome";
+import "../app/globals.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import Header from "../app/components/header"; // Correct path
+import Footer from "../app/components/footer"; // Correct path
 
 
 const SignUp = () => {

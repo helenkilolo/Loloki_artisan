@@ -71,12 +71,12 @@ const Header = () => {
         <div className="flex items-center space-x-4">
           <Link href="/search" legacyBehavior>
             <a className="hover:text-orange-500">
-            <FontAwesomeIcon icon={faSearch} size="2x" />
+            <FontAwesomeIcon icon={faSearch} size="lg" />
             </a>
           </Link>
           <Link href="/cart" legacyBehavior>
             <a className="hover:text-orange-500">
-            <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+            <FontAwesomeIcon icon={faShoppingCart} size="lg" />
             </a>
           </Link>
         </div>
