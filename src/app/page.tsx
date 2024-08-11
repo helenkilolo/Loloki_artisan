@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import "../fontawesome";
+import "./globals.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
-
+import Header from './components/header';
+import Footer from "./components/footer";
 
 const HomePage = () => {
   return (
@@ -213,17 +216,18 @@ const HomePage = () => {
             <h3 className="text-xl font-semibold mt-4 text-black">Get Social</h3>
             <div className="flex space-x-4 text-black">
             <Link href="https://facebook.com" legacyBehavior>
-  <a><FontAwesomeIcon icon={faFacebook} size="2x" /></a>
-</Link>
-            
+              <a> 
+              <FontAwesomeIcon icon={faFacebook} size="2x" />
+                </a>
+            </Link>
             <Link href="https://twitter.com" legacyBehavior>
               <a>
-                <FontAwesomeIcon icon={faTwitter} size="2x" />
+              <FontAwesomeIcon icon={faTwitter} size="2x" />
               </a>
             </Link>
             <Link href="https://instagram.com" legacyBehavior>
               <a>
-                <FontAwesomeIcon icon={faInstagram} size="2x" />
+              <FontAwesomeIcon icon={faInstagram} size="2x" />
               </a>
             </Link>
             </div>

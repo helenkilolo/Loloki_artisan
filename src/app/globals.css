@@ -1,19 +1,21 @@
 /* globals.css */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'); /* Ensure FontAwesome is imported */
+
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f97316; /* This sets the background color to Tailwind's orange-500 */
-  color: #000; /* Default text color to black */
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f97316; /* This sets the background color to Tailwind's orange-500 */
+    color: #000; /* Default text color to black */
   }
-}
+  
+  @layer utilities {
+    .text-balance {
+      text-wrap: balance;
+    }
+  }
 
