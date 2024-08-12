@@ -30,47 +30,41 @@ const Footer = () => {
         <div>
           <h4 className="text-lg font-semibold mb-4">Customer Service</h4>
           <ul className="space-y-2">
-            <li><Link href="/SignIn" legacyBehavior><a className="hover:underline">Login</a></Link></li>
-            <li><Link href="/orders" legacyBehavior><a className="hover:underline">My Orders</a></Link></li>
-            <li><Link href="/returns" legacyBehavior><a className="hover:underline">Returns and Refunds</a></Link></li>
-            <li><Link href="/shipping" legacyBehavior><a className="hover:underline">Shipping Policy</a></Link></li>
+            <li><Link href="/SignIn">Login</Link></li>
+            <li><Link href="/orders">My Orders</Link></li>
+            <li><Link href="/returns">Returns and Refunds</Link></li>
+            <li><Link href="/shipping">Shipping Policy</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="text-lg font-semibold mb-4">Sell With Us</h4>
           <ul className="space-y-2">
-            <li><Link href="/merchant-login" legacyBehavior><a className="hover:underline">Merchant Login</a></Link></li>
-            <li><Link href="/register" legacyBehavior><a className="hover:underline">Merchant Registration</a></Link></li>
-            <li><Link href="/training" legacyBehavior><a className="hover:underline">Merchant Training</a></Link></li>
-            <li><Link href="/marketplace" legacyBehavior><a className="hover:underline">The Marketplace</a></Link></li>
+            <li><Link href="/merchant-login">Merchant Login</Link></li>
+            <li><Link href="/register">Merchant Registration</Link></li>
+            <li><Link href="/training">Merchant Training</Link></li>
+            <li><Link href="/marketplace">The Marketplace</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="text-lg font-semibold mb-4">About</h4>
           <ul className="space-y-2">
-            <li><Link href="/about-us" legacyBehavior><a className="hover:underline">About Us</a></Link></li>
-            <li><Link href="/careers" legacyBehavior><a className="hover:underline">Careers</a></Link></li>
-            <li><Link href="/terms" legacyBehavior><a className="hover:underline">Terms & Conditions</a></Link></li>
-            <li><Link href="/privacy" legacyBehavior><a className="hover:underline">Privacy Policy</a></Link></li>
+            <li><Link href="/about-us">About Us</Link></li>
+            <li><Link href="/careers">Careers</Link></li>
+            <li><Link href="/terms">Terms & Conditions</Link></li>
+            <li><Link href="/privacy">Privacy Policy</Link></li>
           </ul>
         </div>
         <div>
           <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
           <div className="flex space-x-4">
-            <Link href="https://facebook.com" legacyBehavior>
-              <a className="text-black hover:text-white">
-                <FontAwesomeIcon icon={faFacebook} size="2x" />
-              </a>
+            <Link href="https://facebook.com">
+              <FontAwesomeIcon icon={faFacebook} size="2x" />
             </Link>
-            <Link href="https://twitter.com" legacyBehavior>
-              <a className="text-black hover:text-white">
-                <FontAwesomeIcon icon={faTwitter} size="2x" />
-              </a>
+            <Link href="https://twitter.com">
+              <FontAwesomeIcon icon={faTwitter} size="2x" />
             </Link>
-            <Link href="https://instagram.com" legacyBehavior>
-              <a className="text-black hover:text-white">
-                <FontAwesomeIcon icon={faInstagram} size="2x" />
-              </a>
+            <Link href="https://instagram.com">
+              <FontAwesomeIcon icon={faInstagram} size="2x" />
             </Link>
           </div>
           <div className="mt-4">
@@ -102,3 +96,6 @@ const Footer = () => {
 };
 
 export default Footer;
+
+
+

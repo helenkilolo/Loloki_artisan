@@ -12,6 +12,26 @@ const HomePage = () => {
   return (
     <div className="font-poppins bg-primary-500 min-h-screen">
       {/* First Section */}
+      <div className="bg-orange-400 py-16">
+  <div className="container mx-auto text-center">
+    <h2 className="text-4xl font-bold mb-8 text-black">
+      Discover African Culture
+    </h2>
+  </div>
+  <div className="w-full">
+    <Image
+      src="/images/warembo.png"  // Replace with your actual image path
+      alt="African Fashion and Art"
+      layout="responsive"
+      width={1920}
+      height={600}
+      className="rounded-lg"
+    />
+  </div>
+</div>
+      
+
+      {/* Second Section */}
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between py-16">
         <div className="w-full md:w-1/2">
           <Image
@@ -35,43 +55,9 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Second Section */}
-      <div className="bg-orange-500 py-16">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-          <div className="w-full md:w-1/2 p-8">
-            <h2 className="text-3xl font-bold mb-4 text-black">
-              Exploring African Culture Through Loloki's Artisan Marketplace
-            </h2>
-            <p className="text-lg mb-6 text-black">
-              Immerse yourself in the beauty of African craftsmanship and creativity as you explore the diverse selection on Loloki's platform.
-            </p>
-            <div>
-              <h3 className="text-2xl font-semibold text-black">Artisan Treasures Await</h3>
-              <p className="text-black">
-                Discover unique African art and products curated with care to bring the essence of Africa right to your home.
-              </p>
-            </div>
-            <div className="mt-6">
-              <h3 className="text-2xl font-semibold text-black">Cultural Richness Showcased</h3>
-              <p className="text-black">
-                Embrace the diverse colors and rich cultural heritage of Africa with every handmade piece from Loloki's marketplace.
-              </p>
-            </div>
-          </div>
-          <div className="w-full md:w-1/2">
-            <Image
-              src="/images/second_image.jpg"
-              alt="Artisan working on a product"
-              width={500}
-              height={500}
-              className="rounded-lg"
-            />
-          </div>
-        </div>
-      </div>
 
       {/* Third Section */}
-      <div className="bg-orange-500 py-16">
+      <div className="bg-orange-400 py-16">
   <div className="container mx-auto text-center">
     <h2 className="text-3xl font-bold mb-8 text-black">Discover African Art and Products Here</h2>
   </div>
@@ -109,7 +95,7 @@ const HomePage = () => {
 
 
       {/* Fourth Section */}
-      <div className="bg-orange-500 py-16">
+      <div className="bg-orange-400 py-16">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
           <div className="w-full md:w-1/2 p-8">
             <h2 className="text-3xl font-bold mb-4 text-black">Discover Authentic African Art</h2>
@@ -135,7 +121,7 @@ const HomePage = () => {
       </div>
 
       {/* Fifth Section */}
-      <div className="bg-orange-500 py-16">
+      <div className="bg-orange-400 py-16">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
           <div className="w-full md:w-1/2">
             <Image
@@ -161,7 +147,7 @@ const HomePage = () => {
       </div>
 
       {/* Sixth Section - Testimonials */}
-      <div className="bg-orange-500 py-16">
+      <div className="bg-orange-400 py-16">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-bold mb-4 text-black">Customers Love Loloki's African Art Collection</h2>
           <p className="text-lg mb-8 text-black">See What They Say</p>
@@ -204,12 +190,12 @@ const HomePage = () => {
       </div>
 
       {/* Final Section - Contact */}
-        <div className="bg-orange-500 py-16">
+        <div className="bg-orange-400 py-16">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
           <div className="w-full md:w-1/2 p-8">
             <h2 className="text-3xl font-bold mb-4 text-black">Explore more</h2>
-            <p className="text-lg text-black">123 Anywhere St.<br />Any City, St 12345</p>
-            <p className="text-lg text-black">(123) 456-7890<br />hello@reallygreatsite.com</p>
+            <p className="text-lg text-black">46902 Nairobi<br />Nairobi City, St Biashara</p>
+            <p className="text-lg text-black">(+254) 726-356473<br />helenkilolo@gmail.com</p>
             <h3 className="text-xl font-semibold mt-4 text-black">Business Hours</h3>
             <p className="text-black">Monday, Wednesday & Friday: 9:00 am to 5:00 pm</p>
             <p className="text-black">Tuesday, Thursday & Saturday: 8:00 am to 4:00 pm</p>

@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 import "../globals.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-
 
 const Header = () => {
   return (
@@ -48,41 +47,66 @@ const Header = () => {
           </a>
         </Link>
 
-        {/* Navigation Links */}
-        <nav className="flex items-center space-x-8">
-          <Link href="/brands" legacyBehavior>
-            <a className="hover:text-orange-500">BRANDS</a>
-          </Link>
-          <Link href="/women" legacyBehavior>
-            <a className="hover:text-orange-500">WOMEN</a>
-          </Link>
-          <Link href="/men" legacyBehavior>
-            <a className="hover:text-orange-500">MEN</a>
-          </Link>
-          <Link href="/art-decor" legacyBehavior>
-            <a className="hover:text-orange-500">ART & DECOR</a>
-          </Link>
+        {/* Search Bar and "Sell with Us" */}
+        <div className="flex items-center space-x-4">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="border border-gray-300 rounded-lg px-4 py-2"
+          />
           <Link href="/sell-with-us" legacyBehavior>
             <a className="hover:text-orange-500 font-semibold">SELL WITH US</a>
           </Link>
-        </nav>
-
-        {/* Search and Cart Icons */}
-        <div className="flex items-center space-x-4">
-          <Link href="/search" legacyBehavior>
-            <a className="hover:text-orange-500">
-            <FontAwesomeIcon icon={faSearch} size="lg" />
-            </a>
-          </Link>
           <Link href="/cart" legacyBehavior>
             <a className="hover:text-orange-500">
-            <FontAwesomeIcon icon={faShoppingCart} size="lg" />
+              <FontAwesomeIcon icon={faShoppingCart} size="2x" />
             </a>
           </Link>
         </div>
+      </div>
+
+      {/* Navigation Links */}
+      <div className="container mx-auto flex justify-center space-x-8 py-4">
+        <Link href="/all-products" legacyBehavior>
+          <a className="hover:text-orange-500">All products</a>
+        </Link>
+        <Link href="/women" legacyBehavior>
+          <a className="hover:text-orange-500">Women</a>
+        </Link>
+        <Link href="/jewelry" legacyBehavior>
+          <a className="hover:text-orange-500">Jewelry</a>
+        </Link>
+        <Link href="/fabrics" legacyBehavior>
+          <a className="hover:text-orange-500">Fabrics</a>
+        </Link>
+        <Link href="/men" legacyBehavior>
+          <a className="hover:text-orange-500">Men</a>
+        </Link>
+        <Link href="/art-decor" legacyBehavior>
+          <a className="hover:text-orange-500">Art & Decor</a>
+        </Link>
+        <Link href="/bags" legacyBehavior>
+          <a className="hover:text-orange-500">Bags</a>
+        </Link>
+        <Link href="/accessories" legacyBehavior>
+          <a className="hover:text-orange-500">Accessories</a>
+        </Link>
+        <Link href="/beauty-hair" legacyBehavior>
+          <a className="hover:text-orange-500">Beauty & Hair</a>
+        </Link>
+        <Link href="/kids" legacyBehavior>
+          <a className="hover:text-orange-500">Kids</a>
+        </Link>
+        <Link href="/shoes" legacyBehavior>
+          <a className="hover:text-orange-500">Shoes</a>
+        </Link>
+        <Link href="/reviews" legacyBehavior>
+          <a className="hover:text-orange-500">Reviews</a>
+        </Link>
       </div>
     </header>
   );
 };
 
 export default Header;
+
