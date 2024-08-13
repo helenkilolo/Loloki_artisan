@@ -58,15 +58,18 @@ const Header = () => {
             <a className="hover:text-orange-500 font-semibold">SELL WITH US</a>
           </Link>
           <Link href="/cart" legacyBehavior>
-            <a className="hover:text-orange-500">
+            <a className="relative">
               <FontAwesomeIcon icon={faShoppingCart} size="2x" />
+              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1">
+                3 {/* Replace with dynamic cart item count */}
+              </span>
             </a>
           </Link>
         </div>
       </div>
 
       {/* Navigation Links */}
-      <div className="container mx-auto flex justify-center space-x-8 py-4">
+      <div className="container mx-auto flex justify-center space-x-4 py-4 flex-wrap">
         <Link href="/all-products" legacyBehavior>
           <a className="hover:text-orange-500">All products</a>
         </Link>
@@ -109,4 +112,5 @@ const Header = () => {
 };
 
 export default Header;
+
 

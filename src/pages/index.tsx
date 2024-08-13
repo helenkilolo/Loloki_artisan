@@ -2,14 +2,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Head from "next/head";
 import "../fontawesome"; // This is important to include FontAwesome icons
-import "./globals.css";
+import "../app/globals.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import Header from './components/header';
-import Footer from "./components/footer";
+import Header from '../app/components/header';
+import Footer from "../app/components/footer";
 
 const HomePage = () => {
   return (
+    <>
+      {/* Add the Header */}
+      <Header />
+
     <div className="font-poppins bg-primary-500 min-h-screen">
       {/* First Section */}
       <div className="bg-orange-400 py-16">
@@ -231,9 +235,11 @@ const HomePage = () => {
         </div>
       </div>
     </div>
+    
+    {/* Include Footer */}
+    <Footer />
+    </>
   );
 };
 
 export default HomePage;
-
-
