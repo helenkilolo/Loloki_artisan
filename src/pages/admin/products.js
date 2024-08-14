@@ -77,6 +77,25 @@ export default function AdminProducts() {
     }
   };
 
+  const updateStock = async (id, newStock) => {
+    const res = await fetch(`/api/admin/products/${id}/stock`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ stock: newStock }),
+    });
+
+    if (res.ok) {
+      setProducts((prev) =>
+        prev.map((product) => (product._id === id ? { ...product, stock: newStock } : product))
+      );
+    } else {
+      console.error('Failed to update stock');
+    }
+  };
+
   return (
     <>
       <Header />
@@ -128,6 +147,12 @@ export default function AdminProducts() {
               <h2 className="text-2xl font-bold">{product.name}</h2>
               <p>{product.category}</p>
               <p>${product.price}</p>
+              <p>{product.stock} in stock</p>
+              <input
+                type="number"
+                value={product.stock}
+                onChange={(e) => updateStock(product._id, e.target.value)}
+              />
               <button onClick={() => editProduct(product)} className="bg-blue-500 text-white py-1 px-4 rounded">
                 Edit
               </button>

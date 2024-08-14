@@ -1,4 +1,3 @@
-// /pages/admin/orders.js
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Header from '../../app/components/header';
@@ -31,7 +30,7 @@ export default function AdminOrders() {
   }, [router]);
 
   const updateOrderStatus = async (id, status) => {
-    const res = await fetch(`/api/admin/orders/${id}`, {
+    const res = await fetch(`/api/admin/orders/${id}/status`, {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -50,11 +49,58 @@ export default function AdminOrders() {
     }
   };
 
+  const refundOrder = async (id) => {
+    const res = await fetch(`/api/admin/orders/${id}/refund`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (res.ok) {
+      setOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order._id === id ? { ...order, status: 'Refunded' } : order
+        )
+      );
+    } else {
+      console.error('Failed to refund order');
+    }
+  };
+
+  const downloadReport = async () => {
+    const res = await fetch('/api/admin/orders/report', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+
+    if (res.ok) {
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'orders_report.csv';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } else {
+      console.error('Failed to download report');
+    }
+  };
+
   return (
     <>
       <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Manage Orders</h1>
+        <button
+          onClick={downloadReport}
+          className="bg-blue-500 text-white py-2 px-4 rounded mb-8"
+        >
+          Download Orders Report
+        </button>
         {orders.length === 0 ? (
           <p>No orders found.</p>
         ) : (
@@ -77,6 +123,12 @@ export default function AdminOrders() {
                   <option value="Delivered">Delivered</option>
                   <option value="Cancelled">Cancelled</option>
                 </select>
+                <button 
+                  onClick={() => refundOrder(order._id)} 
+                  className="bg-red-500 text-white py-1 px-4 rounded ml-4"
+                >
+                  Refund
+                </button>
               </li>
             ))}
           </ul>
@@ -86,3 +138,6 @@ export default function AdminOrders() {
     </>
   );
 }
+
+
+

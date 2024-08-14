@@ -34,8 +34,13 @@ router.post('/login', async (req, res) => {
 
   try {
     const user = await User.findOne({ email });
+
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    if (user.banned) {
+      return res.status(403).json({ message: 'User is banned.' });
     }
 
     const isMatch = await user.comparePassword(password);
@@ -201,7 +206,6 @@ router.post('/forgot-password', async (req, res) => {
   }
 });
 
-// Email verification route
 // Email verification route
 router.get('/verify-email/:token', async (req, res) => {
   try {
