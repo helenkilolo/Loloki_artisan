@@ -61,7 +61,7 @@ export default function AllProducts() {
               <p>Category: {product.category}</p>
               {/* Ensure the amount (price) is correctly displayed here */}
               <p>Price: ${product.amount}</p>
-              <img src={product.image} alt={product.name} style={{ width: '100%', height: 'auto' }} />
+              <Image src={product.image} alt={product.name} style={{ width: '100%', height: 'auto' }} />
 
               <Link href={`/products/${product._id}`} className="text-orange-500 hover:underline">
                 View Product

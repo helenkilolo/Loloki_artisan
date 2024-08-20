@@ -1,5 +1,3 @@
-// src/pages/admin/dashboard.js
-
 import Link from 'next/link';
 import Header from '../../app/components/header';
 import Footer from '../../app/components/footer';
@@ -17,7 +15,7 @@ export default function AdminDashboard() {
     if (!loading && (!user || !user.isAdmin)) {
       router.push('/SignIn');
     }
-  }, [user, loading]);
+  }, [user, loading, router]);
 
   if (loading) return <Loader />;
 
@@ -51,5 +49,6 @@ export default function AdminDashboard() {
     </>
   );
 }
+
 
 

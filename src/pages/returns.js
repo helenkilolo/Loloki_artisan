@@ -7,7 +7,7 @@ export default function Returns() {
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Returns and Refunds</h1>
         <p className="mb-4">
-          Our goal is to ensure you are completely satisfied with your purchase. If you're not entirely happy with your purchase, we're here to help.
+          Our goal is to ensure you are completely satisfied with your purchase. If you&apos;re not entirely happy with your purchase, we&apos;re here to help.
         </p>
         <h2 className="text-2xl font-semibold mb-4">Return Policy</h2>
         <p className="mb-4">

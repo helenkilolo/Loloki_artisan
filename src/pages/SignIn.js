@@ -95,7 +95,7 @@ const SignIn = () => {
           </button>
         </form>
         <p className="text-center text-gray-600 mt-4">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <Link href="/SignUp" legacyBehavior>
             <a className="text-orange-500 hover:underline">Sign up here</a>
           </Link>
@@ -109,6 +109,7 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
 
 
 

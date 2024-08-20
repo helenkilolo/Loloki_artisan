@@ -1,13 +1,12 @@
-// /components/ProductFilters.js
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export default function ProductFilters({ categories, onFilter }) {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedPriceRange, setSelectedPriceRange] = useState('');
 
-  const applyFilters = () => {
+  const applyFilters = useCallback(() => {
     onFilter({ category: selectedCategory, priceRange: selectedPriceRange });
-  };
+  }, [onFilter, selectedCategory, selectedPriceRange]);
 
   const clearFilters = () => {
     setSelectedCategory('');
@@ -16,7 +15,7 @@ export default function ProductFilters({ categories, onFilter }) {
 
   useEffect(() => {
     applyFilters();
-  }, [selectedCategory, selectedPriceRange]);
+  }, [applyFilters]);
 
   return (
     <aside className="w-full md:w-1/4 p-4 border-r">
@@ -57,4 +56,5 @@ export default function ProductFilters({ categories, onFilter }) {
     </aside>
   );
 }
+
 

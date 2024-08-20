@@ -50,7 +50,7 @@ export default function CartPage() {
             {cart.map((item) => (
               <li key={item.id} className="flex flex-col sm:flex-row justify-between items-center">
                 <div className="flex items-center space-x-4">
-                  <img src={item.image} alt={item.name} width={50} height={50} className="rounded" />
+                  <Image src={item.image} alt={item.name} width={50} height={50} className="rounded" />
                   <span className="text-lg">{item.name}</span>
                 </div>
                 <div className="flex items-center space-x-4 mt-4 sm:mt-0">

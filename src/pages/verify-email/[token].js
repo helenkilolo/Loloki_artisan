@@ -1,4 +1,3 @@
-// /pages/verify-email/[token].js
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
@@ -23,7 +22,7 @@ export default function VerifyEmail() {
     };
 
     if (token) verifyEmail();
-  }, [token]);
+  }, [token, router]);
 
   return (
     <div>
@@ -31,3 +30,4 @@ export default function VerifyEmail() {
     </div>
   );
 }
+

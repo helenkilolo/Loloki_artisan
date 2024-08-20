@@ -13,7 +13,7 @@ export default function Training() {
         <ul className="list-disc pl-5">
           <li>How to set up your shop</li>
           <li>Marketing strategies for your products</li>
-          <li>Understanding our platform's tools and features</li>
+          <li>Understanding our platform&apos;s tools and features</li> {/* Corrected line */}
         </ul>
         {/* Add more details as needed */}
       </div>

@@ -46,7 +46,7 @@ export default function ProductDetailPage({ product }) {
       ) : (
         cart.map((item, index) => (
           <div key={index} className="flex items-center mb-4">
-            <img src={item.image} alt={item.name} className="w-16 h-16 mr-4" />
+            <Image src={item.image} alt={item.name} className="w-16 h-16 mr-4" />
             <div>
               <h2 className="text-lg font-semibold">{item.name}</h2>
               <p>Price: ${item.price}</p>

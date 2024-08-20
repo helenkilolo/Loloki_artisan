@@ -1,5 +1,5 @@
-// /pages/admin/analytics.js
 import { useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
 import Header from '../../app/components/header';
 import Footer from '../../app/components/footer';
@@ -37,12 +37,36 @@ export default function AdminAnalytics() {
       setSalesData(salesData);
       setUserData(userData);
       setInventoryData(inventoryData);
-
-      // Initialize charts here...
     };
 
     fetchAnalytics();
   }, []);
+
+  const salesChartData = {
+    labels: salesData.map(sale => sale.date),
+    datasets: [
+      {
+        label: 'Sales',
+        data: salesData.map(sale => sale.amount),
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const userChartData = {
+    labels: userData.map(user => user.date),
+    datasets: [
+      {
+        label: 'New Users',
+        data: userData.map(user => user.count),
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
 
   return (
     <>
@@ -52,11 +76,11 @@ export default function AdminAnalytics() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <h2 className="text-2xl font-bold">Sales Analytics</h2>
-            <canvas id="salesChart"></canvas>
+            <Line data={salesChartData} />
           </div>
           <div>
             <h2 className="text-2xl font-bold">User Analytics</h2>
-            <canvas id="userChart"></canvas>
+            <Line data={userChartData} />
           </div>
           <div>
             <h2 className="text-2xl font-bold">Inventory Analytics</h2>

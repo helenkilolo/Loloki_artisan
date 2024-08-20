@@ -68,12 +68,12 @@ const SellWithUs = () => {
         <h2 className="text-4xl font-bold text-center mb-12">What Our Sellers Say</h2>
         <div className="grid md:grid-cols-2 gap-8">
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <p className="text-xl mb-4">"Selling on this platform has significantly boosted my business. The process is seamless and the support team is always there to help."</p>
-            <p className="font-semibold text-orange-500">— John Doe, Artisan</p>
+            <p className="text-xl mb-4">&quot;Selling on this platform has significantly boosted my business. The process is seamless and the support team is always there to help.&quot;</p>
+            <p className="font-semibold text-orange-500">&mdash; John Doe, Artisan</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <p className="text-xl mb-4">"I love how easy it is to manage my store and track my sales. The platform has helped me reach new customers every day."</p>
-            <p className="font-semibold text-orange-500">— Jane Smith, Designer</p>
+            <p className="text-xl mb-4">&quot;I love how easy it is to manage my store and track my sales. The platform has helped me reach new customers every day.&quot;</p>
+            <p className="font-semibold text-orange-500">&mdash; Jane Smith, Designer</p>
           </div>
         </div>
       </section>
@@ -110,3 +110,4 @@ const SellWithUs = () => {
 };
 
 export default SellWithUs;
+

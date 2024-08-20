@@ -1,17 +1,17 @@
-// /pages/admin/payment-settings.js
+// /pages/admin/tax-settings.js
 import { useEffect, useState } from 'react';
 import Header from '../../app/components/header';
 import Footer from '../../app/components/footer';
 import { useAuth } from '../../utils/auth';
 
-export default function AdminPaymentSettings() {
+export default function AdminTaxSettings() {
   useAuth();
 
   const [settings, setSettings] = useState([]);
 
   useEffect(() => {
     const fetchSettings = async () => {
-      const res = await fetch('/api/admin/payment-settings', {
+      const res = await fetch('/api/admin/tax-settings', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
@@ -24,7 +24,7 @@ export default function AdminPaymentSettings() {
   }, []);
 
   const updateSetting = async (id, updatedData) => {
-    const res = await fetch(`/api/admin/payment-settings/${id}`, {
+    const res = await fetch(`/api/admin/tax-settings/${id}`, {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -43,15 +43,15 @@ export default function AdminPaymentSettings() {
   return (
     <>
       <div className="container mx-auto py-16">
-        <h1 className="text-4xl font-bold mb-8">Manage Payment Settings</h1>
+        <h1 className="text-4xl font-bold mb-8">Manage Tax Settings</h1>
         <ul className="space-y-4">
           {settings.map((setting) => (
             <li key={setting._id} className="border p-4 rounded-lg">
-              <h2 className="text-2xl font-bold">{setting.gateway}</h2>
+              <h2 className="text-2xl font-bold">{setting.country}</h2>
               <input
-                type="text"
-                value={setting.apiKey}
-                onChange={(e) => updateSetting(setting._id, { ...setting, apiKey: e.target.value })}
+                type="number"
+                value={setting.taxRate}
+                onChange={(e) => updateSetting(setting._id, { ...setting, taxRate: e.target.value })}
               />
             </li>
           ))}
@@ -60,5 +60,3 @@ export default function AdminPaymentSettings() {
     </>
   );
 }
-
-

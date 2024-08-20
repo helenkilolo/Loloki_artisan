@@ -54,11 +54,11 @@ const Header = () => {
         <div className="container mx-auto flex justify-between items-center px-4">
           <div className="flex items-center space-x-4 text-sm">
             <div className="flex items-center">
-              <img src="/images/kenya.png" alt="Location" className="h-4 w-4 mr-1" />
+              <Image src="/images/kenya.png" alt="Location" className="h-4 w-4 mr-1" />
               <span>Location: KE</span>
             </div>
             <div className="flex items-center">
-              <img src="/images/ukflag.jpeg" alt="Language" className="h-4 w-4 mr-1" />
+              <Image src="/images/ukflag.jpeg" alt="Language" className="h-4 w-4 mr-1" />
               <span>Language: EN</span>
             </div>
             <div className="flex items-center">

@@ -35,7 +35,6 @@ const testimonials = [
     name: "Voevi Nzula",
     image: "/images/customer3.jpeg",
   },
-  // Add more testimonials as needed
 ];
 
 const products = [
@@ -71,7 +70,6 @@ const products = [
     name: "Product 6",
     image: "/images/afric4.jpg",
   },
-
 ];
 
 const HomePage = () => {
@@ -96,6 +94,7 @@ const HomePage = () => {
 
   return (
     <div className="font-poppins bg-primary-500 min-h-screen">
+      <Header />
 
       {/* Hero Section with Dynamic Slideshow */}
       <div className="relative w-full h-screen overflow-hidden">
@@ -183,7 +182,7 @@ const HomePage = () => {
               }`}
             >
               <Image src={testimonial.image} alt={testimonial.name} width={150} height={150} className="rounded-full mb-4" />
-              <p className="text-black mb-2">"{testimonial.text}"</p>
+              <p className="text-black mb-2">&quot;{testimonial.text}&quot;</p>
               <p className="text-black font-bold">- {testimonial.name}</p>
             </div>
           ))}
@@ -192,35 +191,35 @@ const HomePage = () => {
 
       {/* Highlight of Unique Selling Points */}
       <div className="container mx-auto py-16">
-  <h2 className="text-4xl font-bold text-center mb-12">Why Choose Loloki?</h2>
-  <div className="grid md:grid-cols-3 gap-8 text-center">
-    <div>
-      <FontAwesomeIcon icon={faHandHoldingHeart} size="3x" className="text-orange-500 mb-4" />
-      <h3 className="text-2xl font-semibold mb-2">Authentic Products</h3>
-      <p className="text-black">Each product is hand-selected to ensure authenticity and quality.</p>
-    </div>
-    <div>
-      <FontAwesomeIcon icon={faGlobe} size="3x" className="text-orange-500 mb-4" />
-      <h3 className="text-2xl font-semibold mb-2">Global Reach</h3>
-      <p className="text-black">We connect artisans from Africa with buyers worldwide.</p>
-    </div>
-    <div>
-      <FontAwesomeIcon icon={faLeaf} size="3x" className="text-orange-500 mb-4" />
-      <h3 className="text-2xl font-semibold mb-2">Eco-Friendly</h3>
-      <p className="text-black">Our products are sustainably sourced and environmentally friendly.</p>
-    </div>
-  </div>
-</div>
-
-
+        <h2 className="text-4xl font-bold text-center mb-12">Why Choose Loloki?</h2>
+        <div className="grid md:grid-cols-3 gap-8 text-center">
+          <div>
+            <FontAwesomeIcon icon={faHandHoldingHeart} size="3x" className="text-orange-500 mb-4" />
+            <h3 className="text-2xl font-semibold mb-2">Authentic Products</h3>
+            <p className="text-black">Each product is hand-selected to ensure authenticity and quality.</p>
+          </div>
+          <div>
+            <FontAwesomeIcon icon={faGlobe} size="3x" className="text-orange-500 mb-4" />
+            <h3 className="text-2xl font-semibold mb-2">Global Reach</h3>
+            <p className="text-black">We connect artisans from Africa with buyers worldwide.</p>
+          </div>
+          <div>
+            <FontAwesomeIcon icon={faLeaf} size="3x" className="text-orange-500 mb-4" />
+            <h3 className="text-2xl font-semibold mb-2">Eco-Friendly</h3>
+            <p className="text-black">Our products are sustainably sourced and environmentally friendly.</p>
+          </div>
+        </div>
+      </div>
 
       {/* Engaging Call-to-Action Section */}
       <div className="bg-black py-16">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-4">Join Our Artisan Community</h2>
           <p className="text-white mb-8">Ready to discover and support African artisans? Start exploring now.</p>
-          <Link href="/sell-with-us"> className="bg-orange-500 text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-orange-600"
+          <Link href="/sell-with-us">
+            <a className="bg-orange-500 text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-orange-600">
               Get Started
+            </a>
           </Link>
         </div>
       </div>
@@ -240,19 +239,25 @@ const HomePage = () => {
             <h3 className="text-xl font-semibold mt-4">Get Social</h3>
             <div className="flex space-x-4">
               <Link href="https://facebook.com">
-                <FontAwesomeIcon icon={faFacebook} size="2x" />
+                <a>
+                  <FontAwesomeIcon icon={faFacebook} size="2x" />
+                </a>
               </Link>
               <Link href="https://twitter.com">
-                <FontAwesomeIcon icon={faTwitter} size="2x" />
+                <a>
+                  <FontAwesomeIcon icon={faTwitter} size="2x" />
+                </a>
               </Link>
               <Link href="https://instagram.com">
-                <FontAwesomeIcon icon={faInstagram} size="2x" />
+                <a>
+                  <FontAwesomeIcon icon={faInstagram} size="2x" />
+                </a>
               </Link>
             </div>
           </div>
           <div className="w-full md:w-1/2">
             <Image
-              src="/images/afric15.jpg" // Replace with actual image
+              src="/images/afric15.jpg"
               alt="Contact Us"
               width={500}
               height={500}
@@ -261,9 +266,10 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-
+      <Footer />
     </div>
   );
 };
 
 export default HomePage;
+
