@@ -60,8 +60,8 @@ To set up the project locally, follow these steps:
 
 ### Clone the repository:
 
-git clone https://github.com/yourusername/loloki-ecommerce.git
-cd loloki-ecommerce
+git clone https://github.com/helenkilolo/Loloki_artisan
+cd Loloki_artisan
 
 Install dependencies:
 npm install
