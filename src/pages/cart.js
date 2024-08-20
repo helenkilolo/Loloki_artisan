@@ -1,6 +1,7 @@
 import { useCart } from '../context/CartContext';
 import Link from 'next/link';
 import { useEffect } from 'react';
+import Image from 'next/image';
 import Header from '../app/components/header';
 import Footer from '../app/components/footer';
 import CartItem from '../app/components/CartItem';
