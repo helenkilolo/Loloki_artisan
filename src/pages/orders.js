@@ -1,7 +1,7 @@
 // /pages/orders.js
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useAuth } from '../utils/auth';
+import { useAuth } from '../utils/auth.js';
 import Header from '../app/components/header';
 import Footer from '../app/components/footer';
 

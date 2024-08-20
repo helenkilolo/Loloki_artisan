@@ -95,13 +95,11 @@ export default function ReviewsPage() {
 
   return (
     <>
-      <Header />
       <div className="container mx-auto p-8">
         <h1 className="text-4xl font-bold mb-8">Customer Reviews</h1>
         <ReviewForm onSubmit={handleReviewSubmit} />
         <ReviewList reviews={reviews} />
       </div>
-      <Footer />
     </>
   );
 }

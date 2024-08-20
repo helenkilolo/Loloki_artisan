@@ -4,7 +4,6 @@ import Footer from '../app/components/footer';
 export default function AboutUs() {
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">About Us</h1>
         <p className="mb-4">
@@ -12,7 +11,6 @@ export default function AboutUs() {
         </p>
         {/* Add more details about the company’s history, mission, and vision */}
       </div>
-      <Footer />
     </>
   );
 }

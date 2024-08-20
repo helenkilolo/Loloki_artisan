@@ -13,7 +13,6 @@ export default function UserOrders() {
 
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">My Orders</h1>
         <ul className="space-y-4">
@@ -25,7 +24,6 @@ export default function UserOrders() {
           ))}
         </ul>
       </div>
-      <Footer />
     </>
   );
 }

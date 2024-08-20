@@ -24,6 +24,8 @@ const cartReducer = (state, action) => {
 export const CartProvider = ({ children }) => {
   const [cart, dispatch] = useReducer(cartReducer, []);
 
+  console.log("CartProvider is rendering");
+
   return (
     <CartContext.Provider value={{ cart, dispatch }}>
       {children}
@@ -31,8 +33,12 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-export const useCart = () => {
-  return useContext(CartContext);
-};
 
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
+};
 

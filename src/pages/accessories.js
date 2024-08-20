@@ -40,7 +40,6 @@ export default function AccessoriesPage({ initialProducts, categories }) {
 
   return (
     <>
-      <Header /> {/* Include Header */}
       <div className="container mx-auto flex">
         <ProductFilters categories={categories} onFilter={handleFilter} />
         <div className="flex-1">
@@ -48,7 +47,6 @@ export default function AccessoriesPage({ initialProducts, categories }) {
           <ProductGrid products={products} />
         </div>
       </div>
-      <Footer /> {/* Include Footer */}
     </>
   );
 }

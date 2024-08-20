@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import Header from '../app/components/header';
 import Footer from '../app/components/footer';
-import CartItem from '../components/CartItem';
+import CartItem from '../app/components/CartItem';
 
 export default function CartPage() {
   const { cart, dispatch } = useCart();
@@ -71,8 +71,8 @@ export default function CartPage() {
               <button onClick={clearCart} className="bg-red-500 text-white py-2 px-4 rounded">
                 Clear Cart
               </button>
-              <Link href="/checkout">
-                <a className="bg-green-500 text-white py-2 px-4 rounded">Proceed to Checkout</a>
+              <Link href="/checkout" className="bg-green-500 text-white py-2 px-4 rounded">
+                Proceed to Checkout
               </Link>
             </div>
           </div>
@@ -81,4 +81,3 @@ export default function CartPage() {
     </div>
   );
 }
-

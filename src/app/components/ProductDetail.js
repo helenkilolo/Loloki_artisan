@@ -1,6 +1,7 @@
-// /components/ProductDetail.js
 import Image from 'next/image';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../../context/CartContext';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ProductDetail({ product }) {
   const { dispatch } = useCart();
@@ -15,6 +16,7 @@ export default function ProductDetail({ product }) {
         image: product.image,
       },
     });
+    toast.success(`${product.name} added to cart!`);
   };
 
   return (
@@ -40,6 +42,7 @@ export default function ProductDetail({ product }) {
           >
             Add to Cart
           </button>
+          <ToastContainer />
         </div>
       </div>
     </div>

@@ -6,27 +6,33 @@ import User from '../models/userModel.js';
 import jwt from 'jsonwebtoken';
 import { protect } from '../middleware/authMiddleware.js';
 
-
 const router = express.Router();
 
 // Registration route
 router.post('/register', async (req, res) => {
-  const { firstName, surname, email, password } = req.body;
+  const { firstName, surname, email, password, phoneNumber, country } = req.body;
+
+  console.log("Received registration data:", { firstName, surname, email, password, phoneNumber, country });
 
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
+      console.log("User already exists:", email);
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    const user = await User.create({ firstName, surname, email, password });
+    const user = await User.create({ firstName, surname, email, password, phoneNumber, country });
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
+    console.log("User created successfully:", user);
     res.status(201).json({ token });
   } catch (error) {
+    console.error('Error during user registration:', error);
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+
 
 // Login route
 router.post('/login', async (req, res) => {
@@ -50,16 +56,27 @@ router.post('/login', async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.status(200).json({ token });
+    res.status(200).json({ token, user: { firstName: user.firstName, surname: user.surname, email: user.email } });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
+  
 });
 
 // Logout route
 router.post('/logout', (req, res) => {
   res.status(200).json({ message: 'Logged out' });
 });
+
+router.get('/me', protect, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 
 // Forgot Password route
 router.post('/forgot-password', async (req, res) => {
@@ -120,11 +137,16 @@ router.post('/reset-password/:token', async (req, res) => {
     }
 
     user.password = password;
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpires = undefined;
+
+    // Ensure that token and expiry are only cleared if the user is found
+    if (user.resetPasswordToken && user.resetPasswordExpires) {
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpires = undefined;
+    }
+
     await user.save();
 
-    res.status(200).json({ message: 'Password has been reset' });
+    res.status(200).json({ message: 'Password has been reset successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
@@ -162,50 +184,6 @@ router.put('/profile', protect, async (req, res) => {
   }
 });
 
-// Password reset request
-router.post('/forgot-password', async (req, res) => {
-  const { email } = req.body;
-
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    const resetToken = crypto.randomBytes(32).toString('hex');
-    user.resetPasswordToken = resetToken;
-    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-
-    await user.save();
-
-    const resetURL = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
-
-    const transporter = nodemailer.createTransport({
-      service: 'Gmail',
-      auth: {
-        user: process.env.EMAIL_USERNAME,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
-
-    const mailOptions = {
-      to: user.email,
-      from: process.env.EMAIL_USERNAME,
-      subject: 'Password Reset',
-      text: `You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n
-      Please click on the following link, or paste this into your browser to complete the process:\n\n
-      ${resetURL}\n\n
-      If you did not request this, please ignore this email and your password will remain unchanged.\n`,
-    };
-
-    await transporter.sendMail(mailOptions);
-
-    res.status(200).json({ message: 'Password reset link sent to your email' });
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
 // Email verification route
 router.get('/verify-email/:token', async (req, res) => {
   try {
@@ -225,6 +203,6 @@ router.get('/verify-email/:token', async (req, res) => {
   }
 });
 
-
 export default router;
+
 

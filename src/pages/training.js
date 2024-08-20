@@ -4,7 +4,6 @@ import Footer from '../app/components/footer';
 export default function Training() {
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Merchant Training</h1>
         <p className="mb-4">
@@ -18,7 +17,6 @@ export default function Training() {
         </ul>
         {/* Add more details as needed */}
       </div>
-      <Footer />
     </>
   );
 }

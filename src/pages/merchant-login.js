@@ -4,7 +4,6 @@ import Footer from '../app/components/footer';
 export default function MerchantLogin() {
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Merchant Login</h1>
         <form className="max-w-md mx-auto">
@@ -19,7 +18,6 @@ export default function MerchantLogin() {
           <button type="submit" className="bg-orange-500 text-white py-2 px-4 rounded-lg">Login</button>
         </form>
       </div>
-      <Footer />
     </>
   );
 }

@@ -1,16 +1,57 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import axios from 'axios'; // Import axios for API requests
 import "../globals.css";
+import { useCart } from '../../context/CartContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
+  const { cart } = useCart();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5000/api/auth/me', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setUser(response.data);
+        console.log("Fetched user data:", response.data); // Debugging line
+      } catch (error) {
+        console.log('User not logged in:', error);
+      }
+    };
+  
+    fetchUser();
+  }, []);
+  
+  
+
+  const handleLogout = async () => {
+    try {
+      await axios.post('http://localhost:5000/api/auth/logout', {}, {
+        withCredentials: true,
+      });
+      localStorage.removeItem('token'); // Remove the token from storage
+      setUser(null); // Clear the user state
+      window.location.reload(); // Reload to ensure the header updates
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
+  
+
+  const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <header className="w-full bg-white shadow-sm">
-      {/* Top Bar */}
       <div className="bg-gray-100 py-2">
         <div className="container mx-auto flex justify-between items-center px-4">
-          {/* Location, Language, Currency */}
           <div className="flex items-center space-x-4 text-sm">
             <div className="flex items-center">
               <img src="/images/kenya.png" alt="Location" className="h-4 w-4 mr-1" />
@@ -24,15 +65,28 @@ const Header = () => {
               <span>Currency: KES</span>
             </div>
           </div>
-          {/* Sign In / Create Account */}
           <div className="flex items-center space-x-4 text-sm">
-            <Link href="/SignIn" legacyBehavior>
-              <a className="hover:text-orange-500">Sign In</a>
-            </Link>
-            <span>|</span>
-            <Link href="/SignUp" legacyBehavior>
-              <a className="hover:text-orange-500">Create an Account</a>
-            </Link>
+            {user ? (
+              <>
+                <span className="text-gray-700">Welcome, {user.firstName}!</span>
+                <button 
+                  onClick={handleLogout} 
+                  className="hover:text-orange-500"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link href="/SignIn" legacyBehavior>
+                  <a className="hover:text-orange-500">Sign In</a>
+                </Link>
+                <span>|</span>
+                <Link href="/SignUp" legacyBehavior>
+                  <a className="hover:text-orange-500">Create an Account</a>
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -60,9 +114,11 @@ const Header = () => {
           <Link href="/cart" legacyBehavior>
             <a className="relative">
               <FontAwesomeIcon icon={faShoppingCart} size="2x" />
-              <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1">
-                3 {/* Replace with dynamic cart item count */}
-              </span>
+              {cartItemCount > 0 && (
+                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1">
+                  {cartItemCount}
+                </span>
+              )}
             </a>
           </Link>
         </div>
@@ -112,5 +168,3 @@ const Header = () => {
 };
 
 export default Header;
-
-

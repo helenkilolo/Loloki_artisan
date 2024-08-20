@@ -4,7 +4,6 @@ import Footer from '../app/components/footer';
 export default function Shipping() {
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Shipping Policy</h1>
         <p className="mb-4">
@@ -16,7 +15,6 @@ export default function Shipping() {
         </p>
         {/* Add more details as needed */}
       </div>
-      <Footer />
     </>
   );
 }

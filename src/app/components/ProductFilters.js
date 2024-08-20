@@ -9,6 +9,11 @@ export default function ProductFilters({ categories, onFilter }) {
     onFilter({ category: selectedCategory, priceRange: selectedPriceRange });
   };
 
+  const clearFilters = () => {
+    setSelectedCategory('');
+    setSelectedPriceRange('');
+  };
+
   useEffect(() => {
     applyFilters();
   }, [selectedCategory, selectedPriceRange]);
@@ -42,6 +47,14 @@ export default function ProductFilters({ categories, onFilter }) {
           <option value="101-200">$101 - $200</option>
         </select>
       </div>
+
+      <button
+        onClick={clearFilters}
+        className="w-full bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-600"
+      >
+        Clear Filters
+      </button>
     </aside>
   );
 }
+

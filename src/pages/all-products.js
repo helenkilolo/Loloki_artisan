@@ -28,7 +28,6 @@ export default function AllProducts() {
         <title>All Products - Loloki Africa</title>
         <meta name="description" content="Browse all products available on Loloki Africa." />
       </Head>
-      <Header />
       <div className="container mx-auto">
         <h1 className="text-4xl font-bold mb-8">All Products</h1>
         <div className="flex space-x-4 mb-8">
@@ -71,7 +70,6 @@ export default function AllProducts() {
           ))}
         </div>
       </div>
-      <Footer />
     </>
   );
 }

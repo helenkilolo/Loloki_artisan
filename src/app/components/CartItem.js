@@ -1,6 +1,4 @@
-// /components/CartItem.js
-
-import { useCart } from '../context/CartContext';
+import { useCart } from '../../context/CartContext';
 
 export default function CartItem({ item }) {
   const { dispatch } = useCart();
@@ -9,6 +7,13 @@ export default function CartItem({ item }) {
     dispatch({
       type: 'UPDATE_CART_QUANTITY',
       payload: { id: item.id, quantity },
+    });
+  };
+
+  const removeFromCart = (id) => {
+    dispatch({
+      type: 'REMOVE_FROM_CART',
+      payload: { id },
     });
   };
 

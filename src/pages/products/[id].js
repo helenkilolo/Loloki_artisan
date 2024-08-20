@@ -10,6 +10,12 @@ export async function getServerSideProps({ params }) {
   const product = await productsCollection.findOne({ _id: new ObjectId(params.id) });
   client.close();
 
+  if (!product) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       product: {
@@ -27,16 +33,18 @@ export async function getServerSideProps({ params }) {
   };
 }
 
-export default function CartPage() {
-  const { state } = useCart();
+export default function ProductDetailPage({ product }) {
+  const { cart } = useCart(); // Accessing the cart from context
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-4xl font-bold mb-8">Your Cart</h1>
-      {state.length === 0 ? (
+      <ProductDetail product={product} />
+
+      <h2 className="text-2xl font-bold mt-8">Your Cart</h2>
+      {cart.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
-        state.map((item, index) => (
+        cart.map((item, index) => (
           <div key={index} className="flex items-center mb-4">
             <img src={item.image} alt={item.name} className="w-16 h-16 mr-4" />
             <div>

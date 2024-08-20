@@ -8,13 +8,18 @@ export default function ResetPassword() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
   const router = useRouter();
   const { token } = router.query;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setMessage('');
+    setError('');
+
     if (password !== confirmPassword) {
-      return alert('Passwords do not match');
+      setError('Passwords do not match');
+      return;
     }
 
     try {
@@ -29,19 +34,20 @@ export default function ResetPassword() {
         setMessage(data.message);
         router.push('/SignIn');
       } else {
-        setMessage(data.message);
+        setError(data.message);
       }
     } catch (error) {
-      setMessage('Error resetting password');
+      setError('Error resetting password');
     }
   };
 
   return (
     <>
-      <Header />
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
           <h2 className="text-3xl font-bold mb-8 text-center">Reset Password</h2>
+          {error && <p className="text-red-500 mb-4">{error}</p>}
+          {message && <p className="text-green-500 mb-4">{message}</p>}
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block text-gray-700">New Password</label>
@@ -67,10 +73,9 @@ export default function ResetPassword() {
               Reset Password
             </button>
           </form>
-          {message && <p className="mt-4 text-center text-gray-600">{message}</p>}
         </div>
       </div>
-      <Footer />
     </>
   );
 }
+

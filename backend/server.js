@@ -4,6 +4,35 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+
+
+dotenv.config();
+
+// Check for required environment variables
+if (!process.env.MONGODB_URI) {
+  console.error('MONGODB_URI is not defined');
+  process.exit(1); // Exit the application if the variable is not defined
+}
+
+if (!process.env.JWT_SECRET) {
+  console.error('JWT_SECRET is not defined');
+  process.exit(1); // Exit the application if the variable is not defined
+}
+
+if (!process.env.PAYMENT_GATEWAY_API_KEY) {
+  console.error('PAYMENT_GATEWAY_API_KEY is not defined');
+  process.exit(1); // Exit the application if the variable is not defined
+}
+
+// Example check for a custom environment variable
+//if (!process.env.CUSTOM_VARIABLE) {
+//  console.error('CUSTOM_VARIABLE is not defined');
+//  process.exit(1); // Exit the application if the variable is not defined
+//}
+
+const PAYMENT_GATEWAY_API_KEY = process.env.PAYMENT_GATEWAY_API_KEY || 'default_value';
+
+
 import authRoutes from './routes/authRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import adminProductRoutes from './routes/adminProductRoutes.js';
@@ -18,16 +47,18 @@ import adminSecurityRoutes from './routes/adminSecurityRoutes.js';
 import taxSettingsRoutes from './routes/taxSettingsRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 
-dotenv.config();
 const app = express();
 
-// Middleware
-app.use(cors());
+// CORS Middleware
+app.use(cors({
+  origin: 'http://localhost:3000',  
+  credentials: true
+}));
+
+// Other Middlewares
 app.use(express.json());
-
-
-app.use(cors());
 app.use(bodyParser.json());
+
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/admin', adminProductRoutes);

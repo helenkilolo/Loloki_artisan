@@ -4,12 +4,24 @@ import { useState } from 'react';
 export default function ForgotPasswordForm({ onClose }) {
   const [email, setEmail] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle the form submission, e.g., send email to API
-    console.log('Forgot Password email:', email);
-    onClose(); // Close the modal after submission
+    try {
+      const response = await fetch('/api/auth/forgot-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+      const result = await response.json();
+      console.log(result.message); // Handle success/failure response
+      onClose();
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
+  
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

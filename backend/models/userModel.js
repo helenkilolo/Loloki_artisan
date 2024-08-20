@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  phoneNumber: {
+    type: String,
+    required: true,
+  },
   password: {
     type: String,
     required: true,
@@ -31,6 +35,7 @@ const userSchema = new mongoose.Schema({
     default: false,
   },
 }, { timestamps: true });
+
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
   const salt = await bcrypt.genSalt(10);
@@ -44,6 +49,7 @@ userSchema.methods.comparePassword = async function (enteredPassword) {
 
 const User = mongoose.model('User', userSchema);
 export default User;
+
 
 
 

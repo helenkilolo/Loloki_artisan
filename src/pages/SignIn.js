@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+import axios from 'axios'; // Import axios for HTTP requests
 import Link from 'next/link';
 import Image from 'next/image';
 import ForgotPasswordForm from '../app/components/ForgotPasswordForm'; // Import the form component
@@ -8,7 +10,31 @@ import Header from "../app/components/header"; // Correct path
 import Footer from "../app/components/footer"; // Correct path
 
 const SignIn = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const router = useRouter();
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Send login data to backend
+      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      
+      if (response.status === 200) {
+        const token = response.data.token;
+        localStorage.setItem('token', token);
+
+        // Redirect to homepage
+        router.push('/');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setErrorMessage('Invalid email or password');
+    }
+  };
 
   const handleForgotPasswordClick = () => {
     setShowForgotPassword(true);
@@ -31,12 +57,14 @@ const SignIn = () => {
       </div>
       <div className="relative bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-3xl font-bold mb-8 text-center">Sign In to Your Account</h2>
-        <form>
+        <form onSubmit={handleSignIn}>
           <div className="mb-4">
             <label className="block text-gray-700">Email</label>
             <input
               type="email"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-orange-500"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
           </div>
@@ -45,9 +73,14 @@ const SignIn = () => {
             <input
               type="password"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-orange-500"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
+          {errorMessage && (
+            <p className="text-red-500 text-center mb-4">{errorMessage}</p>
+          )}
           <div className="flex justify-between items-center mb-4">
             <button
               type="button"
@@ -57,7 +90,7 @@ const SignIn = () => {
               Forgot Password?
             </button>
           </div>
-          <button className="w-full bg-orange-500 text-white py-2 rounded-lg font-semibold hover:bg-orange-600">
+          <button type="submit" className="w-full bg-orange-500 text-white py-2 rounded-lg font-semibold hover:bg-orange-600">
             Sign In
           </button>
         </form>
@@ -76,6 +109,12 @@ const SignIn = () => {
 };
 
 export default SignIn;
+
+
+
+
+
+
 
 
 

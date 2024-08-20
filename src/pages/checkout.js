@@ -31,7 +31,6 @@ export default function Checkout() {
 
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Checkout</h1>
         <form onSubmit={(e) => e.preventDefault()}>
@@ -119,7 +118,6 @@ export default function Checkout() {
           </button>
         </form>
       </div>
-      <Footer />
     </>
   );
 }
