@@ -94,7 +94,6 @@ const HomePage = () => {
 
   return (
     <div className="font-poppins bg-primary-500 min-h-screen">
-      <Header />
 
       {/* Hero Section with Dynamic Slideshow */}
       <div className="relative w-full h-screen overflow-hidden">
@@ -266,7 +265,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
