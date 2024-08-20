@@ -32,7 +32,7 @@ This project is built using [Next.js](https://nextjs.org/) for the frontend and 
 
 ## Project Structure
 
-```plaintext
+
 src/
 ├── app/
 │   ├── components/
@@ -60,7 +60,6 @@ To set up the project locally, follow these steps:
 
 ### Clone the repository:
 
-```bash
 git clone https://github.com/yourusername/loloki-ecommerce.git
 cd loloki-ecommerce
 
