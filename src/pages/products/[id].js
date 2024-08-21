@@ -9,13 +9,6 @@ export async function getServerSideProps({ params }) {
   const productsCollection = db.collection('products');
 
   const product = await productsCollection.findOne({ _id: new ObjectId(params.id) });
-  client.close();
-
-  if (!product) {
-    return {
-      notFound: true,
-    };
-  }
 
   return {
     props: {
@@ -23,7 +16,7 @@ export async function getServerSideProps({ params }) {
         id: product._id.toString(),
         name: product.name,
         category: product.category,
-        price: product.amount,
+        price: product.amount,  // Ensure this is a number in your database
         description: product.tags.join(', '),
         image: product.image,
         seller: product.seller,
@@ -47,7 +40,14 @@ export default function ProductDetailPage({ product }) {
       ) : (
         cart.map((item, index) => (
           <div key={index} className="flex items-center mb-4">
-            <Image src={item.image} alt={item.name} className="w-16 h-16 mr-4" />
+            <Image 
+              src={item.image} 
+              alt={item.name} 
+              width={64}  // Provide width
+              height={64}  // Provide height
+              style={{ objectFit: 'cover' }}  // Ensure image fits nicely
+              className="rounded mr-4" 
+            />
             <div>
               <h2 className="text-lg font-semibold">{item.name}</h2>
               <p>Price: ${item.price}</p>

@@ -13,7 +13,6 @@ export default function AdminOrders() {
 
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Manage Orders</h1>
         <ul className="space-y-4">
@@ -26,7 +25,6 @@ export default function AdminOrders() {
           ))}
         </ul>
       </div>
-      <Footer />
     </>
   );
 }

@@ -12,13 +12,13 @@ export default function ProductDetail({ product }) {
       payload: {
         id: product.id,
         name: product.name,
-        price: product.price,
+        price: product.price,  
         image: product.image,
       },
     });
     toast.success(`${product.name} added to cart!`);
   };
-
+  
   return (
     <div className="container mx-auto">
       <div className="flex flex-col md:flex-row">
@@ -28,8 +28,8 @@ export default function ProductDetail({ product }) {
             alt={product.name}
             width={500}
             height={500}
-            layout="responsive"
-            objectFit="cover"
+            style={{ objectFit: 'cover' }}
+            className="rounded-lg"
           />
         </div>
         <div className="md:w-1/2 p-4">
@@ -48,3 +48,4 @@ export default function ProductDetail({ product }) {
     </div>
   );
 }
+

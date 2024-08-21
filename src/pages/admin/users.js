@@ -55,7 +55,6 @@ export default function AdminUsers() {
 
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Manage Users</h1>
         <ul className="space-y-4">
@@ -80,7 +79,6 @@ export default function AdminUsers() {
           ))}
         </ul>
       </div>
-      <Footer />
     </>
   );
 }

@@ -1,13 +1,18 @@
 import { useCart } from '../../context/CartContext';
+import Image from 'next/image'; // Ensure you have imported Image if you're using images in your CartItem
 
 export default function CartItem({ item }) {
   const { dispatch } = useCart();
 
   const updateQuantity = (quantity) => {
-    dispatch({
-      type: 'UPDATE_CART_QUANTITY',
-      payload: { id: item.id, quantity },
-    });
+    // Ensure quantity is a number
+    const parsedQuantity = parseInt(quantity, 10);
+    if (!isNaN(parsedQuantity) && parsedQuantity > 0) {
+      dispatch({
+        type: 'UPDATE_CART_QUANTITY',
+        payload: { id: item.id, quantity: parsedQuantity },
+      });
+    }
   };
 
   const removeFromCart = (id) => {
@@ -20,7 +25,7 @@ export default function CartItem({ item }) {
   return (
     <div className="cart-item">
       <h2>{item.name}</h2>
-      <p>{item.price}</p>
+      <p>${item.price.toFixed(2)}</p> {/* Ensure price is displayed correctly */}
       <input
         type="number"
         value={item.quantity}
@@ -33,3 +38,4 @@ export default function CartItem({ item }) {
     </div>
   );
 }
+

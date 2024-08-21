@@ -59,9 +59,14 @@ export default function AllProducts() {
             <div key={product._id} className="product-card p-4 bg-white rounded shadow">
               <h2 className="text-xl font-semibold">{product.name}</h2>
               <p>Category: {product.category}</p>
-              {/* Ensure the amount (price) is correctly displayed here */}
               <p>Price: ${product.amount}</p>
-              <Image src={product.image} alt={product.name} style={{ width: '100%', height: 'auto' }} />
+              <Image 
+                src={product.image} 
+                alt={product.name} 
+                width={500} 
+                height={500} 
+                className="w-full h-auto"
+              />
 
               <Link href={`/products/${product._id}`} className="text-orange-500 hover:underline">
                 View Product

@@ -13,26 +13,32 @@ export default function OrderHistory() {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const res = await fetch('/api/orders', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-
-      if (res.ok) {
-        const data = await res.json();
-        setOrders(data);
-      } else {
-        router.push('/SignIn'); // Redirect if not authenticated
+      try {
+        const res = await fetch('/api/orders', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+    
+        if (res.ok) {
+          const data = await res.json();
+          setOrders(data);
+        } else if (res.status === 401) {
+          router.push('/SignIn'); // Redirect if unauthorized
+        } else {
+          console.error('Failed to fetch orders:', res.statusText);
+        }
+      } catch (error) {
+        console.error('An error occurred while fetching orders:', error);
       }
     };
+    
 
     fetchOrders();
   }, [router]);
 
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Order History</h1>
         {orders.length === 0 ? (
@@ -57,7 +63,6 @@ export default function OrderHistory() {
           </ul>
         )}
       </div>
-      <Footer />
     </>
   );
 }

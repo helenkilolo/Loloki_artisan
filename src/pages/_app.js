@@ -25,4 +25,3 @@ export default function MyApp({ Component, pageProps }) {
     </UserProvider>
   );
 }
-

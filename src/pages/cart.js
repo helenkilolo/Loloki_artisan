@@ -38,8 +38,14 @@ export default function CartPage() {
     dispatch({ type: 'CLEAR_CART' });
   };
 
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
-
+  const total = cart.reduce((acc, item) => {
+    const itemPrice = parseFloat(item.price);  // Ensure price is treated as a number
+    if (!isNaN(itemPrice)) {
+      return acc + itemPrice * item.quantity;
+    }
+    return acc;  // Skip this item if price is not a number
+  }, 0);
+  
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-8">Your Cart</h1>
@@ -51,7 +57,14 @@ export default function CartPage() {
             {cart.map((item) => (
               <li key={item.id} className="flex flex-col sm:flex-row justify-between items-center">
                 <div className="flex items-center space-x-4">
-                  <Image src={item.image} alt={item.name} width={50} height={50} className="rounded" />
+                  <Image 
+                    src={item.image} 
+                    alt={item.name} 
+                    width={50} 
+                    height={50} 
+                    style={{ objectFit: 'cover' }} 
+                    className="rounded" 
+                  />
                   <span className="text-lg">{item.name}</span>
                 </div>
                 <div className="flex items-center space-x-4 mt-4 sm:mt-0">
@@ -59,7 +72,7 @@ export default function CartPage() {
                   <span className="text-lg">{item.quantity}</span>
                   <button onClick={() => increaseQuantity(item.id)} className="px-2 py-1 bg-gray-200 rounded">+</button>
                 </div>
-                <span className="text-lg">${(item.price * item.quantity).toFixed(2)}</span>
+                <span className="text-lg">${(parseFloat(item.price) * item.quantity).toFixed(2)}</span>
                 <button onClick={() => removeFromCart(item.id)} className="text-red-500">
                   Remove
                 </button>
@@ -72,8 +85,10 @@ export default function CartPage() {
               <button onClick={clearCart} className="bg-red-500 text-white py-2 px-4 rounded">
                 Clear Cart
               </button>
-              <Link href="/checkout" className="bg-green-500 text-white py-2 px-4 rounded">
-                Proceed to Checkout
+              <Link href="/checkout" legacyBehavior>
+                <a className="bg-green-500 text-white py-2 px-4 rounded">
+                  Proceed to Checkout
+                </a>
               </Link>
             </div>
           </div>
@@ -82,3 +97,4 @@ export default function CartPage() {
     </div>
   );
 }
+

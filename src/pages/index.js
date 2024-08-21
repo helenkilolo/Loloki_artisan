@@ -104,7 +104,7 @@ const HomePage = () => {
               index === currentImage ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            <Image src={image} alt={`Slide ${index}`} layout="fill" objectFit="cover" />
+            <Image src={image} alt={`Slide ${index}`} fill={true} style={{ objectFit: 'cover' }} />
           </div>
         ))}
         <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -116,10 +116,10 @@ const HomePage = () => {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 py-16">
         <div className="group relative">
           <Image
-            src="/images/africanfab1.jpg" // Replace with actual image path
+            src="/images/africanfab1.jpg"
             alt="Feature 1"
-            width={500}
-            height={500}
+            fill={true}
+            style={{ objectFit: 'cover' }}
             className="rounded-lg group-hover:opacity-75 transition-opacity duration-300"
           />
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -128,10 +128,10 @@ const HomePage = () => {
         </div>
         <div className="group relative">
           <Image
-            src="/images/bea1.jpg" // Replace with actual image path
+            src="/images/bea1.jpg"
             alt="Feature 2"
-            width={500}
-            height={500}
+            fill={true}
+            style={{ objectFit: 'cover' }}
             className="rounded-lg group-hover:opacity-75 transition-opacity duration-300"
           />
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -140,10 +140,10 @@ const HomePage = () => {
         </div>
         <div className="group relative">
           <Image
-            src="/images/kate3.jpg" // Replace with actual image path
+            src="/images/kate3.jpg"
             alt="Feature 3"
-            width={500}
-            height={500}
+            fill={true}
+            style={{ objectFit: 'cover' }}
             className="rounded-lg group-hover:opacity-75 transition-opacity duration-300"
           />
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -215,7 +215,7 @@ const HomePage = () => {
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold text-white mb-4">Join Our Artisan Community</h2>
           <p className="text-white mb-8">Ready to discover and support African artisans? Start exploring now.</p>
-          <Link href="/sell-with-us">
+          <Link href="/sell-with-us" legacyBehavior>
             <a className="bg-orange-500 text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-orange-600">
               Get Started
             </a>
@@ -237,17 +237,17 @@ const HomePage = () => {
             <p>Closed on Sundays</p>
             <h3 className="text-xl font-semibold mt-4">Get Social</h3>
             <div className="flex space-x-4">
-              <Link href="https://facebook.com">
+              <Link href="https://facebook.com" legacyBehavior>
                 <a>
                   <FontAwesomeIcon icon={faFacebook} size="2x" />
                 </a>
               </Link>
-              <Link href="https://twitter.com">
+              <Link href="https://twitter.com" legacyBehavior>
                 <a>
                   <FontAwesomeIcon icon={faTwitter} size="2x" />
                 </a>
               </Link>
-              <Link href="https://instagram.com">
+              <Link href="https://instagram.com" legacyBehavior>
                 <a>
                   <FontAwesomeIcon icon={faInstagram} size="2x" />
                 </a>
