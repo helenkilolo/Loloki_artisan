@@ -35,10 +35,10 @@ export default function ProductDetailPage({ product }) {
       <ProductDetail product={product} />
 
       <h2 className="text-2xl font-bold mt-8">Your Cart</h2>
-      {cart.length === 0 ? (
+      {cart && cart.length === 0 ? (
         <p>Your cart is empty</p>
       ) : (
-        cart.map((item, index) => (
+        cart && cart.map((item, index) => (
           <div key={index} className="flex items-center mb-4">
             <Image 
               src={item.image} 

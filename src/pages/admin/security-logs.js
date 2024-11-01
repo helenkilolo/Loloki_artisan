@@ -25,7 +25,6 @@ export default function AdminSecurityLogs() {
 
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Security Logs</h1>
         <ul className="space-y-4">
@@ -38,7 +37,6 @@ export default function AdminSecurityLogs() {
           ))}
         </ul>
       </div>
-      <Footer />
     </>
   );
 }

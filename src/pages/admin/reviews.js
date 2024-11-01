@@ -51,7 +51,6 @@ export default function AdminReviews() {
 
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Pending Reviews</h1>
         {reviews.length === 0 ? (
@@ -75,7 +74,6 @@ export default function AdminReviews() {
           </ul>
         )}
       </div>
-      <Footer />
     </>
   );
 }

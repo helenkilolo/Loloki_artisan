@@ -42,12 +42,10 @@ export default function SalesAnalytics() {
 
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Sales Analytics</h1>
         <Line data={chartData} />
       </div>
-      <Footer />
     </>
   );
 }

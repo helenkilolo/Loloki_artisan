@@ -1,32 +1,78 @@
 import { useCart } from '../context/CartContext';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { loadStripe } from '@stripe/stripe-js'; // Import Stripe library
 import Header from '../app/components/header';
 import Footer from '../app/components/footer';
 
+// Initialize Stripe with your public key
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
 export default function Checkout() {
-  const { cart } = useCart();
+  const { state } = useCart(); // Access state from CartContext
   const [paymentDetails, setPaymentDetails] = useState({});
   const [paymentMethod, setPaymentMethod] = useState(''); // To track selected payment method
   const router = useRouter();
 
+  // Handle MPesa Payment
+  const handleMpesaPayment = async () => {
+    try {
+      const response = await fetch('/api/mpesa', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ paymentDetails, totalAmount: state.total }),
+      });
+      const result = await response.json();
+      if (result.success) {
+        console.log('MPesa Payment Success:', result);
+        router.push('/order-confirmation');
+      } else {
+        alert('MPesa Payment Failed');
+      }
+    } catch (error) {
+      console.error('MPesa Payment Error:', error);
+    }
+  };
+
+// Handle Stripe Payment
+const handleStripePayment = async () => {
+  const stripe = await stripePromise;
+  try {
+    const response = await fetch('/api/stripe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ totalAmount: state.total }),
+    });
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || 'Error creating checkout session');
+    }
+
+    const { sessionId } = await response.json();
+    const { error } = await stripe.redirectToCheckout({ sessionId });
+    if (error) {
+      console.error('Stripe Checkout Error:', error);
+      alert('Payment failed');
+    }
+  } catch (error) {
+    console.error('Stripe Payment Error:', error);
+  }
+};
+
+
+  // Handle Payment based on selected method
   const handlePayment = async () => {
-    if (paymentMethod === 'mpesa') {
-      // Handle MPesa payment process
-      console.log('Processing MPesa payment...', paymentDetails, cart);
-      // Integrate MPesa API here
-    } else if (paymentMethod === 'stripe') {
-      // Handle Stripe payment process
-      console.log('Processing Stripe payment...', paymentDetails, cart);
-      // Integrate Stripe API here
-    } else {
+    if (!paymentMethod) {
       alert('Please select a payment method.');
       return;
     }
     
-    // Simulate order saving and redirection to order confirmation
-    console.log('Payment Details:', paymentDetails, cart);
-    router.push('/order-confirmation');
+    if (paymentMethod === 'mpesa') {
+      await handleMpesaPayment();
+    } else if (paymentMethod === 'stripe') {
+      await handleStripePayment();
+    }
   };
 
   return (
@@ -109,6 +155,11 @@ export default function Checkout() {
               </label>
             </div>
           )}
+
+          <div className="mb-4">
+            <h2 className="text-2xl font-bold mb-4">Total Amount</h2>
+            <p className="text-xl">${state.total.toFixed(2)}</p>
+          </div>
 
           <button
             onClick={handlePayment}

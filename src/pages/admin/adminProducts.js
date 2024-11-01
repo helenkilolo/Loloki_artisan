@@ -98,7 +98,6 @@ export default function AdminProducts() {
 
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Manage Products</h1>
         <form onSubmit={handleSubmit}>
@@ -163,7 +162,6 @@ export default function AdminProducts() {
           ))}
         </ul>
       </div>
-      <Footer />
     </>
   );
 }

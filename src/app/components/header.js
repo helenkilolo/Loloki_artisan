@@ -3,50 +3,58 @@ import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios'; // Import axios for API requests
 import "../globals.css";
+import { useAuth } from '../../context/authContext';
 import { useCart } from '../../context/CartContext';
+import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
-  const { cart } = useCart();
-  const [user, setUser] = useState(null);
+  const { state } = useCart();
+  const { user, setUser } = useAuth();  // Ensure setUser is available from useAuth
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/auth/me', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUser(response.data);
-        console.log("Fetched user data:", response.data); // Debugging line
+        if (token) {
+          const response = await axios.get('http://localhost:5000/api/auth/me', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setUser(response.data);
+        }
       } catch (error) {
         console.log('User not logged in:', error);
+      } finally {
+        setLoading(false);
       }
     };
-  
     fetchUser();
-  }, []);
-  
-  
+  }, [setUser]); // Depend on setUser to avoid re-fetching unnecessarily
 
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  
   const handleLogout = async () => {
     try {
       await axios.post('http://localhost:5000/api/auth/logout', {}, {
         withCredentials: true,
       });
-      localStorage.removeItem('token'); // Remove the token from storage
-      setUser(null); // Clear the user state
-      window.location.reload(); // Reload to ensure the header updates
+      localStorage.removeItem('token');
+      setUser(null); // Update the user state to null
+      await router.push('/'); // Wait for the navigation to complete
+      router.reload();
     } catch (error) {
       console.error('Logout error:', error);
     }
   };
-  
 
-  const cartItemCount = cart.reduce((total, item) => total + item.quantity, 0);
+  const cartItemCount = state.items.reduce((total, item) => total + item.quantity, 0);
+  
+  if (loading) return <p>Loading...</p>;  // Handle the loading state
 
   return (
     <header className="w-full bg-white shadow-sm">
@@ -68,12 +76,13 @@ const Header = () => {
           <div className="flex items-center space-x-4 text-sm">
             {user ? (
               <>
-                <span className="text-gray-700">Welcome, {user.firstName}!</span>
+                <span className="text-gray-700">Welcome, {user.firstName || 'User'}!</span>
                 <button 
                   onClick={handleLogout} 
                   className="hover:text-orange-500"
+                  disabled={isLoggingOut}
                 >
-                  Logout
+                  {isLoggingOut ? 'Logging out...' : 'Logout'}
                 </button>
               </>
             ) : (

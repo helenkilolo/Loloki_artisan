@@ -77,7 +77,6 @@ export default function AdminCategoryPage() {
 
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Manage Categories</h1>
         <form onSubmit={handleSubmit}>
@@ -112,7 +111,6 @@ export default function AdminCategoryPage() {
           ))}
         </ul>
       </div>
-      <Footer />
     </>
   );
 }

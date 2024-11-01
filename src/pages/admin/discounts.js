@@ -73,7 +73,6 @@ export default function AdminDiscounts() {
 
   return (
     <>
-      <Header />
       <div className="container mx-auto py-16">
         <h1 className="text-4xl font-bold mb-8">Manage Discount Codes</h1>
         <form onSubmit={handleSubmit}>
@@ -121,7 +120,6 @@ export default function AdminDiscounts() {
           ))}
         </ul>
       </div>
-      <Footer />
     </>
   );
 }

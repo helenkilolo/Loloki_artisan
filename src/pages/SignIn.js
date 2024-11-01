@@ -6,6 +6,7 @@ import Image from 'next/image';
 import ForgotPasswordForm from '../app/components/ForgotPasswordForm'; // Import the form component
 import "../fontawesome";
 import "../app/globals.css";
+import { useAuth } from '../context/authContext';
 import Header from "../app/components/header"; // Correct path
 import Footer from "../app/components/footer"; // Correct path
 
@@ -15,19 +16,17 @@ const SignIn = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const router = useRouter();
+  const { login } = useAuth();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
 
     try {
-      // Send login data to backend
       const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
       
       if (response.status === 200) {
         const token = response.data.token;
-        localStorage.setItem('token', token);
-
-        // Redirect to homepage
+        login(token); // Use the login function to update the auth context
         router.push('/');
       }
     } catch (error) {

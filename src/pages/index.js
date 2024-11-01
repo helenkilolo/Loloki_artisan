@@ -63,11 +63,11 @@ const products = [
     image: "/images/afric7.jpg",
   },
   {
-    name: "Product 6",
+    name: "Product 7",
     image: "/images/kate1.jpg",
   },
   {
-    name: "Product 6",
+    name: "Product 8",
     image: "/images/afric4.jpg",
   },
 ];
