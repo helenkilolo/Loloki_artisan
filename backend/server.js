@@ -5,8 +5,9 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 
-
+// Load environment variables
 dotenv.config();
+
 
 // Check for required environment variables
 if (!process.env.MONGODB_URI) {
